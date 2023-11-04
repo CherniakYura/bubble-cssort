@@ -1,0 +1,538 @@
+:root{
+    --val1: 12;
+    --val2: 16;
+    --val3: 9;
+    --val4: 11;
+    --val5: 7;
+    
+    --max-val: 20;
+    
+        
+    --arr1s0: var(--val1);
+    --arr2s0: var(--val2);
+    --arr3s0: var(--val3);
+    --arr4s0: var(--val4);
+    --arr5s0: var(--val5);
+    
+    /* step 1 - check 1 and 2*/
+    --is-1-greater-2-step-1: Min(1, Max(var(--arr1s0) - var(--arr2s0), 0));
+    --is-2-greater-1-step-1: (1 - var(--is-1-greater-2-step-1));
+  
+    --arr1s1: calc(var(--is-2-greater-1-step-1) * var(--arr1s0) + var(--is-1-greater-2-step-1) * var(--arr2s0));
+    --arr2s1: calc(var(--is-1-greater-2-step-1) * var(--arr1s0) + var(--is-2-greater-1-step-1) * var(--arr2s0)); 
+    --arr3s1: var(--arr3s0);
+    --arr4s1: var(--arr4s0);
+    --arr5s1: var(--arr5s0);
+    
+    /* step 2 - check 2 and 3*/
+    --is-2-greater-3-step-2: Min(1, Max(var(--arr2s1) - var(--arr3s1), 0));
+    --is-3-greater-2-step-2: (1 - var(--is-2-greater-3-step-2));
+  
+    --arr1s2: var(--arr1s1);
+    --arr2s2: calc(var(--is-3-greater-2-step-2) * var(--arr2s1) + var(--is-2-greater-3-step-2) * var(--arr3s1));
+    --arr3s2: calc(var(--is-2-greater-3-step-2) * var(--arr2s1) + var(--is-3-greater-2-step-2) * var(--arr3s1)); 
+    --arr4s2: var(--arr4s1);
+    --arr5s2: var(--arr5s1);
+    
+    /* step 3 - check 3 and 4*/
+    --is-3-greater-4-step-3: Min(1, Max(var(--arr3s2) - var(--arr4s2), 0));
+    --is-4-greater-3-step-3: (1 - var(--is-3-greater-4-step-3));
+  
+    --arr1s3: var(--arr1s2);
+    --arr2s3: var(--arr2s2);
+    --arr3s3: calc(var(--is-4-greater-3-step-3) * var(--arr3s2) + var(--is-3-greater-4-step-3) * var(--arr4s2));
+    --arr4s3: calc(var(--is-3-greater-4-step-3) * var(--arr3s2) + var(--is-4-greater-3-step-3) * var(--arr4s2)); 
+    --arr5s3: var(--arr5s2);
+    
+    /* step 4 - check 4 and 5*/
+    --is-4-greater-5-step-4: Min(1, Max(var(--arr4s3) - var(--arr5s3), 0));
+    --is-5-greater-4-step-4: (1 - var(--is-4-greater-5-step-4));
+  
+    --arr1s4: var(--arr1s3);
+    --arr2s4: var(--arr2s3);
+    --arr3s4: var(--arr3s3);
+    --arr4s4: calc(var(--is-5-greater-4-step-4) * var(--arr4s3) + var(--is-4-greater-5-step-4) * var(--arr5s3));
+    --arr5s4: calc(var(--is-4-greater-5-step-4) * var(--arr4s3) + var(--is-5-greater-4-step-4) * var(--arr5s3)); 
+    
+    
+    
+    /* step 5 - check 1 and 2*/
+    --is-1-greater-2-step-5: Min(1, Max(var(--arr1s4) - var(--arr2s4), 0));
+    --is-2-greater-1-step-5: (1 - var(--is-1-greater-2-step-5));
+  
+    --arr1s5: calc(var(--is-2-greater-1-step-5) * var(--arr1s4) + var(--is-1-greater-2-step-5) * var(--arr2s4));
+    --arr2s5: calc(var(--is-1-greater-2-step-5) * var(--arr1s4) + var(--is-2-greater-1-step-5) * var(--arr2s4)); 
+    --arr3s5: var(--arr3s4);
+    --arr4s5: var(--arr4s4);
+    --arr5s5: var(--arr5s4);
+    
+    
+    
+    
+    /* step 6 - check 2 and 3*/
+    --is-2-greater-3-step-6: Min(1, Max(calc(var(--arr2s5) - var(--arr3s5)), 0));
+    --is-3-greater-2-step-6: calc(1 - var(--is-2-greater-3-step-6));
+  
+    --arr1s6: var(--arr1s5);
+    --arr2s6: calc(var(--is-3-greater-2-step-6) * var(--arr2s5) + var(--is-2-greater-3-step-6) * var(--arr3s5));
+    --arr3s6: calc(var(--is-2-greater-3-step-6) * var(--arr2s5) + var(--is-3-greater-2-step-6) * var(--arr3s5)); 
+    --arr4s6: var(--arr4s5);
+    --arr5s6: var(--arr5s5);
+    
+    
+    /* step 7 - check 3 and 4*/
+    --is-3-greater-4-step-7: Min(1, Max(calc(var(--arr3s6) - var(--arr4s6)), 0));
+    --is-4-greater-3-step-7: calc(1 - var(--is-3-greater-4-step-7));
+  
+    --arr1s7: var(--arr1s6);
+    --arr2s7: var(--arr2s6);
+    --arr3s7: calc(var(--is-4-greater-3-step-7) * var(--arr3s6) + var(--is-3-greater-4-step-7) * var(--arr4s6));
+    --arr4s7: calc(var(--is-3-greater-4-step-7) * var(--arr3s6) + var(--is-4-greater-3-step-7) * var(--arr4s6)); 
+    --arr5s7: var(--arr5s6);
+    
+    
+    /* step 8 - check 1 and 2*/
+    --is-1-greater-2-step-8: Min(1, Max(calc(var(--arr1s7) - var(--arr2s7)), 0));
+    --is-2-greater-1-step-8: calc(1 - var(--is-1-greater-2-step-8));
+  
+    --arr1s8: calc(var(--is-2-greater-1-step-8) * var(--arr1s7) + var(--is-1-greater-2-step-8) * var(--arr2s7));
+    --arr2s8: calc(var(--is-1-greater-2-step-8) * var(--arr1s7) + var(--is-2-greater-1-step-8) * var(--arr2s7)); 
+    --arr3s8: var(--arr3s7);
+    --arr4s8: var(--arr4s7);
+    --arr5s8: var(--arr5s7);
+    
+    
+      /* step 9 - check 2 and 3*/
+    --is-2-greater-3-step-9: Min(1, Max(calc(var(--arr2s8) - var(--arr3s8)), 0));
+    --is-3-greater-2-step-9: calc(1 - var(--is-2-greater-3-step-9));
+  
+    --arr1s9: var(--arr1s8);
+    --arr2s9: calc(var(--is-3-greater-2-step-9) * var(--arr2s8) + var(--is-2-greater-3-step-9) * var(--arr3s8));
+    --arr3s9: calc(var(--is-2-greater-3-step-9) * var(--arr2s8) + var(--is-3-greater-2-step-9) * var(--arr3s8)); 
+    --arr4s9: var(--arr4s8);
+    --arr5s9: var(--arr5s8);
+    
+    
+     /* step 10 - check 1 and 2*/
+    --is-1-greater-2-step-10: Min(1, Max(calc(var(--arr1s9) - var(--arr2s9)), 0));
+    --is-2-greater-1-step-10: calc(1 - var(--is-1-greater-2-step-10));
+  
+    --arr1s10: calc(var(--is-2-greater-1-step-10) * var(--arr1s9) + var(--is-1-greater-2-step-10) * var(--arr2s9));
+    --arr2s10: calc(var(--is-1-greater-2-step-10) * var(--arr1s9) + var(--is-2-greater-1-step-10) * var(--arr2s9)); 
+    --arr3s10: var(--arr3s9);
+    --arr4s10: var(--arr4s9);
+    --arr5s10: var(--arr5s9);
+    
+    
+    
+    
+    /* colouring divs */
+    
+    
+    --color1: green;
+    --color2: red;
+    --switch1: var(--color1) calc(100% * var(--is-1-greater-2-step-1)), 
+                 var(--color2) 0;
+    
+    --switch2: var(--color1) calc(100% * var(--is-2-greater-3-step-2)), 
+                 var(--color2) 0;
+    
+    --switch3: var(--color1) calc(100% * var(--is-3-greater-4-step-3)), 
+                 var(--color2) 0;
+    
+    --switch4: var(--color1) calc(100% * var(--is-4-greater-5-step-4)), 
+                 var(--color2) 0;
+    
+     --switch5: var(--color1) calc(100% * var(--is-1-greater-2-step-5)), 
+                 var(--color2) 0;
+    
+     --switch6: var(--color1) calc(100% * var(--is-2-greater-3-step-6)), 
+                 var(--color2) 0;
+    
+    --switch7: var(--color1) calc(100% * var(--is-3-greater-4-step-7)), 
+                 var(--color2) 0;
+    
+    --switch8: var(--color1) calc(100% * var(--is-1-greater-2-step-8)), 
+                 var(--color2) 0;
+    
+     --switch9: var(--color1) calc(100% * var(--is-2-greater-3-step-9)), 
+                 var(--color2) 0;
+    
+    --switch10: var(--color1) calc(100% * var(--is-1-greater-2-step-10)), 
+                 var(--color2) 0;
+    
+/*     
+    
+    --val2s1: calc(var(--is-2-greater-1) * var(--val1) + var(--is-1-greater-2) * var(--val2));
+    --val2s1: calc(var(--is-1-greater-2) * var(--val1) + var(--is-2-greater-1) * var(--val2));
+     */
+    
+    
+/*     
+    
+    --color1: red;
+    --color2: green;
+    --switch1: var(--color1) calc(100% * var(--is-1-greater-2)), 
+                 var(--color2) calc(100% * var(--is-1-greater-2)), 
+                 var(--color2) calc(100% * (1 - var(--is-1-greater-2)));
+     */
+    
+    --anim-height: 20px;
+    
+    
+}
+
+
+.grid{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: end;
+    padding: 20px;
+    height: calc(var(--max-val) * var(--anim-height));
+}
+
+.grid div{
+    background: linear-gradient(grey, grey); 
+    width: 200px;
+    animation-duration: 12s;
+    animation-fill-mode: forwards;
+}
+.div1{
+    height: calc(var(--arr1s0) * 20px);
+    animation-name: div1;
+}
+
+.div2{
+    height: calc(var(--arr2s0) * 20px);
+    animation-name: div2;
+}
+
+.div3{
+    height: calc(var(--arr3s0) * 20px);
+    animation-name: div3;
+}
+.div4{
+    height: calc(var(--arr4s0) * 20px);
+    animation-name: div4;
+}
+
+.div5{
+    height: calc(var(--arr5s1) * 20px);
+    animation-name: div5;
+}
+
+
+@keyframes div1{
+    0%{
+       height: calc(var(--arr1s0) * var(--anim-height));
+       background: linear-gradient(var(--switch1));
+    }
+    9%{
+      background: linear-gradient(var(--switch1));  
+    }
+    10%{
+       height: calc(var(--arr1s1) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    20%{
+       height: calc(var(--arr1s2) * var(--anim-height));
+    }
+    30%{
+       height: calc(var(--arr1s3) * var(--anim-height));
+    }
+    40%{
+       height: calc(var(--arr1s4) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    41%{
+       background: linear-gradient(var(--switch5));
+    }
+    49%{
+       background: linear-gradient(var(--switch5));
+    }
+    50%{
+       height: calc(var(--arr1s5) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    60%{
+       height: calc(var(--arr1s6) * var(--anim-height));
+    }
+    70%{
+       height: calc(var(--arr1s7) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    71%{
+       height: calc(var(--arr1s7) * var(--anim-height));
+        background: linear-gradient(var(--switch8));
+    }
+    79%{
+       background: linear-gradient(var(--switch8));
+    }
+    80%{
+       height: calc(var(--arr1s8) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    90%{
+       height: calc(var(--arr1s9) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    91%{
+       background: linear-gradient(var(--switch10));
+    }
+    99%{
+      background: linear-gradient(var(--switch10));  
+    }
+    100%{
+       height: calc(var(--arr1s10) * var(--anim-height));
+       background: linear-gradient(grey, grey);  
+    }
+}
+@keyframes div2{
+    0%{
+       height: calc(var(--arr2s0) * var(--anim-height));
+       background: linear-gradient(var(--switch1));
+    }
+    10%{
+       height: calc(var(--arr2s1) * var(--anim-height));
+       background: linear-gradient(var(--switch1));
+    }
+    11%{
+       height: calc(var(--arr2s1) * var(--anim-height));
+       background: linear-gradient(var(--switch2));
+    }
+    19%{
+       background: linear-gradient(var(--switch2));
+    }
+    20%{
+       height: calc(var(--arr2s2) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    30%{
+       height: calc(var(--arr2s3) * var(--anim-height));
+    }
+    40%{
+       height: calc(var(--arr2s4) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    41%{
+       height: calc(var(--arr2s4) * var(--anim-height));
+       background: linear-gradient(var(--switch5));
+    }
+    49%{
+       background: linear-gradient(var(--switch5));
+    }
+    50%{
+       height: calc(var(--arr2s5) * var(--anim-height));
+        background: linear-gradient(var(--switch6));
+    }
+    59%{
+       background: linear-gradient(var(--switch6));
+    }
+    60%{
+       height: calc(var(--arr2s6) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    70%{
+       height: calc(var(--arr2s7) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    71%{
+      background: linear-gradient(var(--switch8));  
+    }
+    80%{
+       height: calc(var(--arr2s8) * var(--anim-height));
+       background: linear-gradient(var(--switch8));
+    }
+    81%{
+       height: calc(var(--arr2s8) * var(--anim-height));
+       background: linear-gradient(var(--switch9));
+    }
+    90%{
+       height: calc(var(--arr2s9) * var(--anim-height));
+       background: linear-gradient(var(--switch9));  
+    }
+    91%{
+       height: calc(var(--arr2s9) * var(--anim-height));
+       background: linear-gradient(var(--switch10));
+    }
+    99%{
+      height: calc(var(--arr2s10) * var(--anim-height));  
+      background: linear-gradient(var(--switch10));  
+    }
+    100%{
+       height: calc(var(--arr2s10) * var(--anim-height));
+    }
+}
+@keyframes div3{
+    0%{
+       height: calc(var(--arr3s0) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    10%{
+       height: calc(var(--arr3s1) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    11%{
+      background: linear-gradient(var(--switch2));  
+    }
+    20%{
+       height: calc(var(--arr3s2) * var(--anim-height));
+       background: linear-gradient(var(--switch2));
+    }
+    21%{
+       height: calc(var(--arr3s2) * var(--anim-height));
+       background: linear-gradient(var(--switch3));
+    }
+    29%{
+      background: linear-gradient(var(--switch3));  
+    }
+    30%{
+       height: calc(var(--arr3s3) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    40%{
+       height: calc(var(--arr3s4) * var(--anim-height));
+    }
+    50%{
+       height: calc(var(--arr3s5) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    51%{
+       height: calc(var(--arr3s5) * var(--anim-height));
+       background: linear-gradient(var(--switch6));
+    }
+    59%{
+       background: linear-gradient(var(--switch6));
+    }
+    60%{
+       height: calc(var(--arr3s6) * var(--anim-height));
+        background: linear-gradient(var(--switch7));
+    }
+    69%{
+       background: linear-gradient(var(--switch7));
+    }
+    70%{
+       height: calc(var(--arr3s7) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    80%{
+       height: calc(var(--arr3s8) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    81%{
+       background: linear-gradient(var(--switch9));
+    }
+    89%{
+       background: linear-gradient(var(--switch9));
+    }
+    90%{
+       height: calc(var(--arr3s9) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    100%{
+       height: calc(var(--arr3s10) * var(--anim-height));
+    }
+}
+@keyframes div4{
+    0%{
+       height: calc(var(--arr4s0) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    10%{
+       height: calc(var(--arr4s1) * var(--anim-height));
+    }
+    20%{
+       height: calc(var(--arr4s2) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    21%{
+         background: linear-gradient(var(--switch3));
+    }
+    30%{
+       height: calc(var(--arr4s3) * var(--anim-height));
+       background: linear-gradient(var(--switch3)); 
+    }
+    31%{
+       height: calc(var(--arr4s3) * var(--anim-height));
+       background: linear-gradient(var(--switch4)); 
+    }
+    39%{
+         background: linear-gradient(var(--switch4));
+    }
+    40%{
+       height: calc(var(--arr4s4) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    50%{
+       height: calc(var(--arr4s5) * var(--anim-height));
+    }
+    60%{
+       height: calc(var(--arr4s6) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    61%{
+       height: calc(var(--arr4s6) * var(--anim-height));
+       background: linear-gradient(var(--switch7));
+    }
+    69%{
+       background: linear-gradient(var(--switch7));
+    }
+    70%{
+       height: calc(var(--arr4s7) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    80%{
+       height: calc(var(--arr4s8) * var(--anim-height));
+    }
+    90%{
+       height: calc(var(--arr4s9) * var(--anim-height));
+    }
+    100%{
+       height: calc(var(--arr4s10) * var(--anim-height));
+    }
+}
+@keyframes div5{
+    0%{
+       height: calc(var(--arr5s0) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    10%{
+       height: calc(var(--arr5s1) * var(--anim-height));
+    }
+    20%{
+       height: calc(var(--arr5s2) * var(--anim-height));
+    }
+    30%{
+       height: calc(var(--arr5s3) * var(--anim-height));
+       background: linear-gradient(grey, grey); 
+    }
+    31%{
+         background: linear-gradient(var(--switch4));
+    }
+    39%{
+         background: linear-gradient(var(--switch4));
+    }
+    40%{
+       height: calc(var(--arr5s4) * var(--anim-height));
+       background: linear-gradient(grey, grey);
+    }
+    50%{
+       height: calc(var(--arr5s5) * var(--anim-height));
+    }
+    60%{
+       height: calc(var(--arr5s6) * var(--anim-height));
+    }
+    70%{
+       height: calc(var(--arr5s7) * var(--anim-height));
+    }
+    80%{
+       height: calc(var(--arr5s8) * var(--anim-height));
+    }
+    90%{
+       height: calc(var(--arr5s9) * var(--anim-height));
+    }
+    100%{
+       height: calc(var(--arr5s10) * var(--anim-height));
+    }
+}
